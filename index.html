@@ -1,0 +1,82 @@
+<html>
+<head>
+  <style>
+    /* This is the CSS code that styles the HTML elements */
+    h1 {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      color: blue;
+    }
+
+    input, button {
+      display: block;
+      margin: 10px auto;
+      font-size: 20px;
+    }
+
+    p {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Temperature Converter</h1>
+  <input id="temp" type="number" placeholder="Enter a temperature">
+  <button id="c2f" onclick="convert('C')">Convert to Fahrenheit</button>
+  <button id="f2c" onclick="convert('F')">Convert to Celsius</button>
+  <p id="result"></p>
+  <script>
+    // This is the JavaScript code that defines the functions and the logic
+
+    // This function converts Celsius to Fahrenheit
+    function celciusToFahrenheit(temperature) {
+      // Use the formula F = C * 9/5 + 32
+      let fahrenheit = temperature * 9 / 5 + 32;
+      // Round off the result to 2 decimal places
+      fahrenheit = Math.round(fahrenheit * 100) / 100;
+      // Return the converted temperature
+      return fahrenheit;
+    }
+
+    // This function converts Fahrenheit to Celsius
+    function fahrenheitToCelcius(temperature) {
+      // Use the formula C = (F - 32) * 5/9
+      let celsius = (temperature - 32) * 5 / 9;
+      // Round off the result to 2 decimal places
+      celsius = Math.round(celsius * 100) / 100;
+      // Return the converted temperature
+      return celsius;
+    }
+
+    // This function converts the temperature based on the user's choice
+    function convert(unit) {
+      // Get the input element by its id
+      let temp = document.getElementById("temp");
+      // Get the value of the input element
+      let value = temp.value;
+      // Check if the value is a valid number
+      if (isNaN(value)) {
+        // If not, display an error message
+        alert("Please enter a valid number");
+      } else {
+        // If yes, convert the temperature according to the unit
+        let result;
+        if (unit === 'C') {
+          // If the unit is C, convert to Fahrenheit
+          result = celciusToFahrenheit(value);
+          // Display the result with the unit symbol
+          document.getElementById("result").innerHTML = value + " °C = " + result + " °F";
+        } else if (unit === 'F') {
+          // If the unit is F, convert to Celsius
+          result = fahrenheitToCelcius(value);
+          // Display the result with the unit symbol
+          document.getElementById("result").innerHTML = value + " °F = " + result + " °C";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
